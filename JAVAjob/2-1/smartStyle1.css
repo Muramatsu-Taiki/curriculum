@@ -1,0 +1,31 @@
+@media screen and (max-width: 767px) {
+    .main1{
+        width: 250px;
+    }
+    .main3{
+        width:100px;
+    }
+    .main4{
+        width:250px;
+        float: none;
+    }
+    
+}
+
+@media screen and (max-width: 479px) {
+    .main1{
+        width:150px;
+    }
+    .main2{
+        width:150px;
+        float: none;
+    }
+    .main3{
+        width:150px;
+        float: none;
+    }
+    .main4{
+        width:150px;
+        float: none;
+    }
+}
