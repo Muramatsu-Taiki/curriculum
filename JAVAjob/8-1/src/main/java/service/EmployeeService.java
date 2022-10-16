@@ -21,9 +21,9 @@ public class EmployeeService {
  /** ドライバーのクラス名 */
  private static final String POSTGRES_DRIVER = "org.postgresql.Driver";
  /** ・JDBC接続先情報 */
- private static final String JDBC_CONNECTION = "jdbc:postgresql://localhost:5432/Employee";
+ private static final String JDBC_CONNECTION = "jdbc:postgresql://localhost:5433/Employee_table";
  /** ・ユーザー名 */
- private static final String USER = "taiki";
+ private static final String USER = "postgres";
  /** ・パスワード */
  private static final String PASS = "taiki0316";
  /** ・タイムフォーマット */
@@ -31,10 +31,10 @@ public class EmployeeService {
  
   // 問② 入力された値で、UPDATEする文
  /** ・SQL UPDATE文 */
- private static final String SQL_UPDATE = "update employee_table set '?' = to_char(current_timestamp, 'yyyy/MM/dd HH24:MI:SS') where id = '?'"; 
+ private static final String SQL_UPDATE = "update employee_table set `?` = to_char(current_timestamp, `yyyy/MM/dd HH24:MI:SS`) where id = `?`"; 
   // 問③ 入力されたIDとPassWordをキーにして、検索するSELECT文
  /** ・SQL SELECT文 */
- private static final String SQL_SELECT = "SELECT * FROM Employee_table WHERE  id='?' AND password = '?'";
+ private static final String SQL_SELECT = "SELECT * FROM employee_table WHERE  id='?' AND password = '?";
  
  EmployeeBean employeeDate = null;
  
@@ -77,8 +77,8 @@ public class EmployeeService {
  */
  preparedStatement = connection.prepareStatement(SQL_SELECT);
   //問⑥ 一番目のindexにIDをセットしてください。2番目のindexにPASSWORDをセット。
- preparedStatement.setString(1, id);
- preparedStatement.setString(2, password);
+ preparedStatement.setString(1,id);
+ preparedStatement.setString(2,password);
   // SQLを実行。実行した結果をresultSetに格納。
  resultSet = preparedStatement.executeQuery();
  
