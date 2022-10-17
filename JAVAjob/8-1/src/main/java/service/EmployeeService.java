@@ -21,20 +21,21 @@ public class EmployeeService {
  /** ドライバーのクラス名 */
  private static final String POSTGRES_DRIVER = "org.postgresql.Driver";
  /** ・JDBC接続先情報 */
- private static final String JDBC_CONNECTION = "jdbc:postgresql://localhost:5433/Employee_table";
+ private static final String JDBC_CONNECTION = "jdbc:postgresql://localhost:5432/Employee_table";
  /** ・ユーザー名 */
  private static final String USER = "postgres";
  /** ・パスワード */
  private static final String PASS = "taiki0316";
  /** ・タイムフォーマット */
  private static final String TIME_FORMAT = "yyyy/MM/dd HH:mm:ss";
- 
   // 問② 入力された値で、UPDATEする文
  /** ・SQL UPDATE文 */
- private static final String SQL_UPDATE = "update employee_table set `?` = to_char(current_timestamp, `yyyy/MM/dd HH24:MI:SS`) where id = `?`"; 
+ private static final String SQL_UPDATE = "update employee_table set ? = to_char(current_timestamp, 'yyyy/MM/dd HH24:MI:SS') where id = ?"; 
   // 問③ 入力されたIDとPassWordをキーにして、検索するSELECT文
  /** ・SQL SELECT文 */
- private static final String SQL_SELECT = "SELECT * FROM employee_table WHERE  id='?' AND password = '?";
+ private static final String SQL_SELECT = "SELECT * FROM employee_table WHERE  id=? AND password = ?";
+ 
+ 
  
  EmployeeBean employeeDate = null;
  
@@ -51,6 +52,8 @@ public class EmployeeService {
  Class.forName(POSTGRES_DRIVER);
  connection = DriverManager.getConnection(JDBC_CONNECTION, USER, PASS);
  statement = connection.createStatement();
+ 
+ System.out.println(statement);
  
   // 処理が流れた時間をフォーマットに合わせて生成
  Calendar cal = Calendar.getInstance();
@@ -87,6 +90,9 @@ public class EmployeeService {
  String tmpName = resultSet.getString("name");
  String tmpComment = resultSet.getString("comment");
  String tmpLoginTime = resultSet.getString("login_time");
+ System.out.println(tmpName);
+ System.out.println(tmpComment);
+ System.out.println(tmpLoginTime);
  
   // 問⑧ EmployeeBeanに取得したデータを入れてください。
  employeeDate = new EmployeeBean();
