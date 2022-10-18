@@ -22,8 +22,6 @@ public class EmployeeController extends HttpServlet {
   // 問① index.htmlから送信されたIDとPassWordの値を取得できるように修正しましょう。
  String id = request.getParameter("id");
  String password = request.getParameter("password");
-  System .out .println (id);
-  System.out.println(password);
  
  /*
  * IDとPassWordと元に、社員情報を検索する関数の呼び出し、結果をJSPに渡す処理

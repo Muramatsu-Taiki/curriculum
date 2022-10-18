@@ -30,10 +30,12 @@ public class EmployeeService {
  private static final String TIME_FORMAT = "yyyy/MM/dd HH:mm:ss";
   // 問② 入力された値で、UPDATEする文
  /** ・SQL UPDATE文 */
- private static final String SQL_UPDATE = "update employee_table set ? = to_char(current_timestamp, 'yyyy/MM/dd HH24:MI:SS') where id = ?"; 
+ private static final String SQL_UPDATE = "update employee_table set login_time = ? where id = ?"; 
   // 問③ 入力されたIDとPassWordをキーにして、検索するSELECT文
  /** ・SQL SELECT文 */
  private static final String SQL_SELECT = "SELECT * FROM employee_table WHERE  id=? AND password = ?";
+ 
+ 
  
  
  
@@ -47,10 +49,12 @@ public class EmployeeService {
  ResultSet resultSet = null;
  PreparedStatement preparedStatement = null;
  
+ 
+ 
  try {
   // データベースに接続
  Class.forName(POSTGRES_DRIVER);
- connection = DriverManager.getConnection(JDBC_CONNECTION, USER, PASS);
+ connection = DriverManager.getConnection(JDBC_CONNECTION,USER,PASS);
  statement = connection.createStatement();
  
  System.out.println(statement);
@@ -71,7 +75,7 @@ public class EmployeeService {
   // 問④ preparedStatementを使って、一番目のindexに今の時間をセットしてください。2番目のindexにIDをセットしてください。
  preparedStatement.setString(1,login_time);
  preparedStatement.setString(2,id);
- 
+ System.out.println(preparedStatement.toString());
   // 問⑤ UPDATEを実行する文を記述
  preparedStatement.executeUpdate();
  /*
