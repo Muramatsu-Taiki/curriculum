@@ -17,14 +17,18 @@
     </div>
     <script>
     //  ここにjQueryを記入
-      $('.click').on('click', function() { 
-        $('.left').animate({ 
-          left: -1 * $('.left').width(), 
-        }, 500);
-        $('.right').animate({ 
-          right: -1 * $('.right').width(), 
-        }, 500);
-      });
+        var count = Number(1);
+        $('.click').on('click', function() { 
+          var counter = count++;
+          if(counter%2 != 0){
+            console.log("開ける")
+            $('.left').animate({width:'0%'},2000);
+            $('.right').animate({width:'0%'},2000);
+          }else{
+            $('.left').animate({width:'50%'},2000);
+            $('.right').animate({width:'50%'},2000);
+          }
+        });
     </script>
   </body>
 </html>
